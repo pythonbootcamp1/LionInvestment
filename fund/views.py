@@ -1,5 +1,7 @@
 from django.shortcuts import redirect, render
 from .models import Item
+from django.shortcuts import get_object_or_404
+
 
 # Create your views here.
 def index(request):
@@ -40,3 +42,32 @@ def fund_create(request):
         }
         return render(request,'fund/fund_create.html', context)
         
+def fund_detail(request, pk):
+    item = get_object_or_404(Item, pk=pk)
+    context = {
+        'item':item
+    }
+    return render(request,'fund/fund_detail.html',context)
+
+def fund_update(request, pk):
+    item = get_object_or_404(Item, pk=pk)
+    if request.method=="POST":
+        form = ItemModelForm(request.POST, instance=item)
+        if form.is_valid():
+            item = form.save()
+            # return redirect('fund:fund_list')
+            return redirect('fund:fund_detail', pk=pk)
+    else:
+        form = ItemModelForm(instance=item)
+        context = {
+            'form':form
+        }
+        return render(request,'fund/fund_update.html',context)
+
+def fund_delete(request, pk):
+    item = get_object_or_404(Item, pk=pk)
+    if request.method=="POST":
+        item.delete()
+        return redirect('fund:fund_list')
+    else:
+        return render(request,'fund/fund_delete.html')

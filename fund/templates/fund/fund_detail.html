@@ -1,0 +1,9 @@
+{% extends 'fund/base.html' %}
+{% block content %}
+<h1>펀드 상세 페이지</h1>
+<p>{{ item.name }}</p>
+<p>{{ item.description }}</p>
+<a href="{% url 'fund:fund_list' %}" class="btn btn-primary">목록으로 돌아가기</a>
+<a href="{% url 'fund:fund_update' item.pk %}" class="btn btn-warning">수정</a>
+<a href="{% url 'fund:fund_delete' item.pk %}" class="btn btn-danger">삭제</a>
+{% endblock %}

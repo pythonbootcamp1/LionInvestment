@@ -1,0 +1,10 @@
+{% extends 'fund/base.html' %}
+{% block content %}
+<h1>펀드 삭제 페이지</h1>
+<form method="post">
+    {% csrf_token %}
+    <p>정말 삭제하시겠습니까?</p>
+    <button type="submit">삭제</button>
+    <a href="{% url 'fund:fund_list' %}">목록으로 돌아가기</a>
+</form>
+{% endblock %}

@@ -15,6 +15,11 @@
                     <div class="card-footer text-muted">
                         생성일: {{ item.create_at }}
                     </div>
+                    <div class="card-footer">
+                        <a href="{% url 'fund:fund_detail' item.pk %}" class="btn btn-primary">상세보기</a>
+                        <a href="{% url 'fund:fund_update' item.pk %}" class="btn btn-warning">수정</a>
+                        <a href="{% url 'fund:fund_delete' item.pk %}" class="btn btn-danger">삭제</a>
+                    </div>
                 </div>
             </div>
             {% endfor %}
