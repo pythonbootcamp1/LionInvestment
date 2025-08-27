@@ -1,0 +1,28 @@
+{% extends 'fund/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">펀드 상품 목록</h2>
+    {% if items %}
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            {% for item in items %}
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.name }}</h5>
+                        <p class="card-text">{{ item.description }}</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        생성일: {{ item.create_at }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-warning text-center" role="alert">
+            <h4 class="alert-heading">내용이 없어요!!</h4>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
